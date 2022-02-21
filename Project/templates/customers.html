@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- font pentru titlul Bookstore -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+	<!-- ---------------------------- -->
+
+		<!-- font  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
+	<!-- ---------------------------- -->
+	<!-- ---------------------------- -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+	<!-- ---------------------------- -->
+
+    <style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: #ffe6d7;
+}
+
+/* Style tab links */
+.title_library{
+	font-wight:bold;
+	font-family: 'Moon Dance', cursive;
+	background-color: #3e2221;
+	color: #fffafa;
+	float: left;
+	border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 3px 6px;
+    font-size: 30px;
+    width: 50%;
+    text-align: left
+}
+
+.title_library:hover{
+	color: #f9f465;
+}
+
+.tablink {
+	font-family: 'Source Sans Pro', sans-serif;
+    background-color: #3e2221;
+    color: azure;
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 13px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #5a3c3f;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 10px 20px;
+    height: 100%;
+}
+
+#Tabel {
+	font-family: font-family: 'PT Sans', sans-serif;
+	background-color: #ffe6d7;
+	color:#321409;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/books"><button class="title_library">BOOKSTORE</button></a>
+
+	<a href="/orders"><button class="tablink">Orders</button></a>
+	<a href="/customers"><button class="tablink" style="background:#5a3c3f; color: white">Customers</button></a>
+	<a href="/publishers"><button class="tablink">Publishers</button></a>
+	<a href="/books"><button class="tablink">Books</button></a>
+
+	<div id="Tabel" class="tabcontent">
+		<center>
+			<br><br><br><br>
+  			<h2 id="h3">CUSTOMERS</h2>
+  			<br>
+			<table style="width:70%">
+				<br>
+  				<tr>
+    				<th><i><b>Nr. crt.</b></i> </th>
+    				<th><i><b>First Name</b></i></th>
+					<th><i><b>Last name</b></i></th>
+					<th><i><b>Email</b></i></th>
+					<th><i><b>Customer adress</b></i></th>
+					<th><i><b>Number of orders</b></i></th>
+				</tr>
+				{% for customer in customers %}
+  				<tr>
+    				<td>{{loop.index}}</td>
+    				<td>{{customer["first_name"]}}</td>
+    				<td>{{customer["last_name"]}}</td>
+    				<td>{{customer["email"]}}</td>
+    				<td>{{customer["adress_customer"]}}</td>
+    				<td>{{customer["number_of_orders"]}}</td>
+				</tr>
+  				{% endfor %}
+		  	</table>
+	 	 </center>
+	</div>
+
+	<script>
+
+	function myFunction() {
+  var rate_value = document.getElementsByName('region_id');
+
+	if(rate_value[0]){
+	alert(rate_value[0].value);
+	document.getElementsByName('customer_id').value=rate_value[0].value;
+	alert(document.getElementsByName('customer_id').value);
+  }}
+
+	</script>
+
+</body>
+
+
+</html>
