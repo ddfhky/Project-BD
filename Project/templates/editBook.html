@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- font pentru titlul Bookstore -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+	<!-- ---------------------------- -->
+
+    	<!-- font  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap" rel="stylesheet">
+	<!-- ---------------------------- -->
+
+
+<style>
+
+ * {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: #ffe6d7;
+}
+
+/* Style tab links */
+.title_library{
+	font-wight:bold;
+	font-family: 'Moon Dance', cursive;
+	background-color: #3e2221;
+	color: #fffafa;
+	float: left;
+	border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 3px 6px;
+    font-size: 30px;
+    width: 50%;
+    text-align: left;
+}
+
+.title_library:hover{
+	color: #f9f465;
+}
+
+.tablink {
+	font-family: 'Source Sans Pro', sans-serif;
+    background-color: #3e2221;
+    color: azure;
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 13px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #5a3c3f;
+}
+
+/* Style buttons */
+.btn {
+
+	font-family: 'Source Sans Pro', sans-serif;
+	/*background-color: #f7c4c4;*/
+	/*background-color: #8cf5ce;*/
+	background-color: #f9f465;
+	/*border: 1px solid #64232a;*/
+	/*border: 1px solid #1b6461;*/
+	border: 1px solid #ab8e27;
+	/*color: #340b0b;*/
+	color: #000000;
+	float: center;
+
+}
+.btn:hover {
+	border: 1px solid #854815;
+    background-color: #ff963c;
+    color: #340b0b;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+.row {
+    color: #321409;
+}
+
+#Books{
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #321409;
+}
+
+</style>
+</head>
+<body>
+
+    <a href="/books"><button class="title_library">BOOKSTORE</button></a>
+
+	<a href="/orders"><button class="tablink">Orders</button></a>
+	<a href="/customers"><button class="tablink">Customers</button></a>
+	<a href="/publishers"><button class="tablink">Publishers</button></a>
+	<a href="/books"><button class="tablink" style="background:#5a3c3f; color: white">Books</button></a>
+
+    <div id="Books" class="tabcontent">
+        <center>
+            <h2 id="editeaza_carte">EDIT BOOK</h2>
+            <br><br>
+            <form class="was-validated" method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>TITLE</b></label>
+                        <input name="title" type="text" class="form-control is-valid" id="validationServer01" value="{{title}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>AUTHOR</b></label>
+                        <input name="book_author" type="text" class="form-control is-valid" id="validationServer01" value="{{book_author}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>PRICE</b></label>
+                        <input name="price" type="text" pattern="[0-9]{1,5}" class="form-control is-valid" id="validationServer01" value="{{price}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>ISBN13</b></label>
+                        <input name="ISBN13" type="text" class="form-control is-valid" id="validationServer01" value="{{ISBN13}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>NUMBER OF PAGES</b></label>
+                        <input name="num_pages" type="text" pattern="[0-9]{1,5}" class="form-control is-valid" id="validationServer01" value="{{num_pages}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>PUBLICATION DATE</b></label>
+                        <input name="publication_date" type="text"  class="form-control is-valid" id="validationServer01" value="{{publication_date}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationServer01"><b>QUANTITY</b></label>
+                        <input name="quantity" type="text" pattern="[0-9]{1,5}" class="form-control is-valid" id="validationServer01" value="{{quantity}}" required>
+                    </div>
+                    <div class="col-md-6 mb-3" align="center">
+                        <label for="validationServer01"><b>PUBLISHER'S NAME</b></label>
+                        <select name="publisher_id" class="custom-select d-block my-3">
+                            {% for publisher_id, publisher_name in publishers %}
+                                <option value={{publisher_id}}>{{publisher_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Edit this book</button>
+            </form>
+        </center>
+    </div>
+
+    <script type="text/javascript">
+        function checkDuplicates() {
+            var selects = document.getElementsByTagName('select');
+            var values = [];
+            for(i=0;i<selects.length;i++) {
+                var select = selects[i];
+                if(values.indexOf(select.value)>-1) {
+                    alert('Comisia ' + i + ' a fost aleasa de mai multe ori!'); //if duplicates found we are returning. without save and no need to continue.
+                    return false;
+                }
+                values.push(select.value)
+            }
+        return true;
+    //saveform here
+    }
+        $dropdown1.change(function() {
+        $dropdown2.children().show();
+        var selectedItem = $($dropdown1).val();
+        if (selectedItem != "")
+            $('select[name="dropdown2"] option[value="' + selectedItem + '"]').hide();
+        });
+
+        $dropdown2.change(function() {
+        $dropdown1.children().show();
+        var selectedItem = $($dropdown2).val();
+        if (selectedItem != "")
+            $('select[name="dropdown1"] option[value="' + selectedItem + '"]').hide();
+        });
+
+        $dropdown3.change(function() {
+        $dropdown1.children().show();
+        $dropdown2.children().show();
+        var selectedItem1 = $($dropdown1).val();
+        var selectedItem2 = $($dropdown2).val();
+        if (selectedItem1 != "" || selectedItem2 != ""){
+            $('select[name="dropdown3"] option[value="' + selectedItem1 + '"]').hide();
+            $('select[name="dropdown3"] option[value="' + selectedItem2 + '"]').hide();
+        }
+        });
+</script>
+
+</body>
+</html>
